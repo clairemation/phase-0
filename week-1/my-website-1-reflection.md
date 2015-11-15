@@ -39,16 +39,20 @@ Ta-dah! Git spits out some text and creates an identical clone of your GitHub re
 
 ###Describe what open source means.
 
+Open source is a development model where instead of code being secret, proprietary, and illegal to copy, it is made freely viewable, usable, and remixable, often with the stipulation that whoever uses the code in their own project must also make their work available on the same terms.
 
+###What do you think about Open Source? Does it make you nervous or protective? Does it feel like utopia?
 
+I have to admit it makes me feel protective. Maybe this is coming from a creative, largely freelance-based field, where workers are frequently cheated out of compensation for the work they do for their livelihood. I guess I have to work to embrace the model, since collaboration and incremental improvement of other people's work is so much more central to coding.
 
-•What do you think about Open Source? Does it make you nervous or protective? Does it feel like utopia?
+###Assess the importance of using licenses.
 
+Licenses are important because they enumerate exactly what someone is and isn't allowed to do with the code. They also allow a developer to promote further sharing of ideas by requiring any work incorporating his or her code to also be made available in open-source form.
 
-•Assess the importance of using licenses.
+###What concepts were solidified in the challenge? Did you have any "aha" moments? What did you struggle with?
 
+The tough part continues to be keeping a model of all the branches and commits straight in my head. Maybe it would help to draw a diagram as I go--there's an "aha" moment, happening right now. I think just the repetition of the process is gradually solidifying the whole protocol in my head. I trust it'll continue to do so. I also think I should write down a process checklist. Each change to the master has eight steps (wow!): checkout new branch, make change, save, add, commit, push, pull request, merge. I can easily see myself forgetting to add before I commit, or to commit before I push.
 
-•What concepts were solidified in the challenge? Did you have any "aha" moments? What did you struggle with?
+###Did you find any resources on your own that helped you better understand a topic? If so, please list it.
 
-
-•Did you find any resources on your own that helped you better understand a topic? If so, please list it.
+I was mostly just Googling around and opening and closing bunches of tabs. Most of my answers were found on Stack Overflow or the documentation at https://git-scm.com.
