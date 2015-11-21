@@ -1,4 +1,5 @@
 ![Site map](imgs/site-map.png)
+(Contact information will be in the footer of every page.)
 
 **1. What are the 6 Phases of Web Design?**
 1- Research. Defining the site's concept, purpose, goals, and target audience.
