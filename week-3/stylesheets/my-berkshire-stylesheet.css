@@ -1,0 +1,58 @@
+h3 {
+    text-align: center;
+    margin-top: -10px;
+    font-size: 20px;
+}
+
+#big {
+    font-size: 35px;
+}
+
+* {
+    font-size: 12px;
+    color: #000080;
+}
+
+
+
+a {
+  color: #800080;
+  font-size: 16px;
+}
+
+a:visited {
+  color: #ff0000;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+
+ul {
+    border-top: 1px solid black;
+    margin: auto;
+    width: 80%;
+}
+
+li {
+    width: 45%;
+    float: left;
+    padding: 2.5%;
+}
+
+
+li:nth-child(odd) {
+    clear: left;
+}
+
+aside {
+    border-top: 1px solid black;
+    text-align: center;
+    clear: left;
+    border-bottom: 1px solid black;
+}
+
+footer {
+    border-top: 1px solid black;
+}
