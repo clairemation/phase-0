@@ -1,10 +1,33 @@
+/*
+-What is important to know when linking an external file (like a stylesheet) to an HTML file?
+
+When linking to stylesheets in an HTML document, it's important to keep your files organized in a structure where moving things around won't mess up the relative path from the HTML file to the stylesheet.
+
+-What tricks did you use to help you with positioning? How hard was it to get the site as you wanted it?
+
+Splitting the list into two different columns (without using the column-count attribute, which would have changed the flow from the original site) took trying a lot of different methods. Ultimately we learned a way that combined techniques that each of us had researched: making each list item 50% of the total width, and then clearing every alternating one to the next line using the nth-child(odd) psuedo-selector. I can see this being handy for many different situations—just make the percentage correspond to a fraction whose denominator is the number of columns you want (33% for three columns, 25% for four, etc.)
+
+-What CSS did you use to modify the element style (like size, color, etc.)
+
+We pretty much only used size and color attributes (and, in the case of borders, border style). We got carried away matching the page to the original and decided to stick to that goal.
+
+-Did you modify the HTML to include classes or ids? If so, which did you choose and why? If you didn't, how would you know which one to add to your HTML?
+
+We added a "big" class to the first letter of each word in the main header, so we could style those larger. Those were the only elements on the page that weren't already distinguished by their semantic tags.
+
+-When you compared your site to the actual code base, which do you think had cleaner code that followed best practices and why?
+
+I was actually shocked when I viewed the original code base! A table, and in each cell an entire list containing a single li... What, just to get the bullet point? Was that less work than looking up how to type one? Our page had the cleaner, better code.Theirs was clearly written before CSS existed, because it was entirely styled in HTML. If you wanted to change the presentation or formatting of the page, it would be a big headache untangling the content from all those tags within tags. Plus ours was a lot easier to read and was a lot shorter.
+
+*/
+
 h3 {
     text-align: center;
     margin-top: -10px;
     font-size: 20px;
 }
 
-#big {
+.big {
     font-size: 35px;
 }
 
