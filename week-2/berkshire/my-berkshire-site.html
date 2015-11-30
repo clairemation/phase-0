@@ -1,89 +1,72 @@
 <!DOCTYPE html>
 
 <!--
-
 - What was it like to translate your previous learning with HTML into an actual site?
-
 Feels good. There's more room for creativity, experimentation, an playing around. Plus you get to figure out how to implement stuff (and there may be more than one way), whereas the HTML exercises at CodeAcademy pretty much walked you through everything.
-
 - How was it researching and using semantic HTML5 elements?
-
 There are plenty of resources online for HTML5, so it isn't hard to find answers to just about anything you might want to know. But I do find the document outline somewhat challenging to grasp. I never knew that header tags actually affect how the browser understands the structure of the document. It seems like you could easily end up with unintended results. I guess that underscores how you shouldn't use semantic tags for stylistic purposes.
-
 - How did you do at keeping to best practices (i.e. no formatting in the HTML)
-
 Technically we didn't use formatting. But we did use a table, which feels a bit like defeat.
-
 - What seems good and bad about HTML?
-
 HTML seems pretty limited, being only a markup language. That's the bad. But now that we also have CSS and JavaScript and PHP and whatever else, that limitation seems like the flip side of a benefit. Keeping semantics and style totally separate is a challenge, and having each task relegated to a different system helps compartmentalize them.
-
 - What tricks do you have for remembering how to write HTML?
 I'm already familiar with HTML, so I know the basic tags pretty much by heart. But I'm also frequently looking up ones I don't know, and even ones I do know that I want to know more about. I guess I don't have any memorization tricks, but I find that the process of searching something out on my own tends to cement it in my head better than studying from a list.
-
 -->
 
 <html>
+<head>
+  <link type="text/css" rel="stylesheet" href="../../week-3/stylesheets/my-berkshire-stylesheet.css" />
+  <title>Berksire Hathaway Clone</title>
+</head>
 
-  <head>
-    <meta charset=”utf-8”>
-    <title>BERKSHIRE HATHAWAY INC</title>
-  </head>
+<body>
+    <h3><span id="big">B</span>ERKSHIRE <span id="big">H</span>ATHAWAY INC.</h3><h3>3555 Farnam Street</h3><h3>Omaha, NE 68131</h3><h3>Official Home Page</h3>
 
-    <body>
-        <h1>BERKSHIRE HATHAWAY INC.</h1>
+  <section>
+    <ul>
+      <li><a href="#">A Message from Warren E. Bufffet</a></li>
+      <li><a href="#">News Releases</a><br>Updated November 6, 2015</li>
+      <li><a href="#">Annual &amp; Interim Reports</a><br>Updated November 6, 2015</li>
+      <li><a href="#">Warren Buffett's Letters to Berkshire Shareholders</a><br>Updated November 6, 2015</li>
+      <li><a href="#">Special Letters From Warren and Charlie RE:Past, Present and Future</a></li>
+      <li><a href="#">Charlie Munger's Letters to Wesco Shareholders</a></li>
+      <li><a href="#">Link to SEC Filings</a></li>
+      <li><a href="#">Annual Meeting Information</a></li>
+      <li><a href="#">Links to Berkshire Subsidiary Companies</a></li>
+      <li><a href="#">Celebrating 50 Years of a Profitable Partnership</a><br>(A commemorative book first sold at the 2015 Annual Meeting and now for sale on eBay.)</li>
+      <li><a href="#">Corporate Governance</a></li>
+      <li><a href="#">Comparative Rights and Relative Prices of Class A and B Stock</a></li>
+      <li><a href="#">Owner's Manual</a></li>
+      <li><a href="#">Berkshire Activeweare</a></li>
+      <li><a href="#">Letters from Warren E. Buffett Regarding Pledges to Make Gifts of Berkshire Stock</a></li>
+    </ul>
+  </section>
 
-        <p>3555 Farnam Street Omaha, NE 68131</p>
+  <aside>
+    <p>
+      <img src="../imgs/geicoimg.gif" /><br>
+      FOR A FREE CAR INSURANCE RATE QUOTE THAT COULD SAVE YOU SUBSTANTIAL MONEY<br>
+      <a href="www.geico.com">WWW.GEICO.COM</a> OR CALL 1-888-395-6349, 24 HOURS A DAY
+    </p>
+  </aside>
 
-        <h2>Official Home Page</h2>
+  <section>
+    <p>
+      If you have any comments about our WEB page, you can either write us at the address shown above or email us at <a href="mailto:berkshire@berkshirehathaway.com">berkshire@berkshirehathaway.com</a>. However, due to the limited number of personnel in our corporate office, we are unable to provide a direct response.
+    </p>
+  </section>
 
-        <hr>
+  <footer>
+    <p>
+      <a href="#">Legal Disclaimer</a>
+    </p>
+    <p>
+      Copyright &copy; 1978-2014 <strong>Berkshire Hathaway Inc.</strong>
+    </p>
+  </footer>
 
-        <table>
-          <tr>
-            <td>&#149;<a href="#"> A Message From Warren E. Buffett</a></td>
-            <td>&#149;<a href="#"> News Releases</a> Updated November 6, 2015</td>
-          </tr>
-          <tr>
-            <td>&#149;<a href="#"> Annual & Interim Reports</a> Updated November 6, 2015</td>
-            <td>&#149;<a href="#"> Warren Buffett's Letters to Berkshire Shareholders</a> Updated February 28, 2015</td>
-          </tr>
-          <tr>
-            <td>&#149;<a href="#"> Special Letters From Warren & Charlie RE:Past, Present and Future</a></td>
-            <td>&#149;<a href="#"> Charlie Munger's Letters to Wesco Shareholders</a></td>
-          </tr>
-          <tr>
-            <td>&#149;<a href="#"> Link to SEC Filings</a></td>
-            <td>&#149;<a href="#"> Annual Meeting Information</a></td>
-          </tr>
-          <tr>
-            <td>&#149;<a href="#"> Links to Berkshire Subsidiary Companies</a></td>
-            <td>&#149;<a href="#"> Celebrating 50 Years of a Profitable Partnership</a> (A commemorative book first sold at the 2015 Annual Meeting and now for sale on eBay.)</td>
-          </tr>
-          <tr>
-            <td>&#149;<a href="#"> Corporate Governance</a></td>
-            <td>&#149;<a href="#"> Comprative Rights and Relative Prices of Class A and B Stock</a></td>
-          </tr>
-          <tr>
-            <td>&#149;<a href="#"> Owner's Manual</a></td>
-            <td>&#149;<a href="#"> Berkshire Activewear</a></td>
-          </tr><tr>
-              <td>&#149;<a href="#"> Letters from Warren E. Buffett Regarding Pledges to Make Gifts of Berkshire Stock</a></td>
-          </tr>
-        </table>
-
-        <hr>
-
-        <p>
-          <img src="../imgs/geicoimg.gif">
-          FOR A FREE CAR INSURANCE RATE QUOTE THAT COULD SAVE YOU SUBSTANTIAL MONEY
-          <a href="http://www.geico.com">WWW.GEICO.COM</a> OR CALL 1-888-395-6349, 24 HOURS A DAY
-        </p>
-
-        <hr>
-
-        <p>
-          If you have any comments about our WEB page, you can either write us at the address shown above or e-mail us at <a href="mailto:berkshire@berkshirehathaway.com">berkshire@berkshirehathaway.com</a>. However, due to the limited number of personnel in our corporate office, we are unable to provide a direct response.
+</body>
+</html>erkshirehathaway.com</a>. However, due to the limited number of personnel in our corporate office, we are unable to provide a direct response.
         </p>
 
         <hr>
