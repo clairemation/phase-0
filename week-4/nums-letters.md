@@ -28,7 +28,7 @@ daysperyear=365
 yearsperdecade=10
 puts minutesperhour * hoursperday * daysperyear * yearsperdecade
 =>5256000
-
+```
 
 **How does Ruby handle addition, subtraction, multiplication, and division of numbers?**
 
