@@ -7,5 +7,5 @@
 
 
 def good_guess?(x)
-  x==42
+  x==42 #Evaluates to true/false, which the method then implicitly returns
 end
