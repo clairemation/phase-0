@@ -1,0 +1,42 @@
+
+body {
+  background-color: beige;
+}
+
+h1 {
+  background-color: #E1CDB2;
+  margin-bottom: 1em;
+  font-family: cursive;
+  color: brown;
+  border-bottom: 1.5px solid brown;
+}
+
+h2 {
+  font-family: cursive;
+  color: brown;
+}
+
+section{
+  background-color: ivory;
+  width : 40%;
+  padding-left: 1.25%;
+  padding-right: 1.25%;
+  float: left;
+  display: inline-block;
+  margin-bottom: 2em;
+}
+.column-1 {
+/* margin-left: auto; */
+  margin-right: 5%
+}
+
+.column-2 {
+  margin-left: 10%;
+/*  margin-right: auto;*/
+
+}
+
+footer {
+  clear: both;
+  margin-top: 2em;
+}
