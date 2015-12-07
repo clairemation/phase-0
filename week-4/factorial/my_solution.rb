@@ -25,8 +25,8 @@ end
 #Recursive version!
 
 def factorial_recursive(numbers)
-  return numbers * (numbers - 1) if numbers > 1
-  numbers
+  return 1 if numbers <= 1
+  numbers * (factorial_recursive(numbers - 1))
 end
 
-puts factorial_recursive(3)
+puts factorial_recursive(5)

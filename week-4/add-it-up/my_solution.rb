@@ -62,9 +62,9 @@ def sentence_maker(words)
     end
 
     if word == words.last #period after last word, otherwise space
-      sentence += "."
+      sentence << "."
     else
-      sentence += " "
+      sentence << " "
     end
     }
   sentence
