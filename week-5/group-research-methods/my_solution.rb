@@ -87,6 +87,9 @@ def my_array_deletion_method!(source, thing_to_delete)
   source.delete_if {|item| item.is_a?(String) && item.include?(thing_to_delete)}
 end
 
+#We need the #is_a?(String) condition first because the interpreter will shit the bed if it hits #include? with something that isn't a string.
+
+
 def my_hash_deletion_method!(source, thing_to_delete)
   source.delete_if {|key, value| key == thing_to_delete}
 end
