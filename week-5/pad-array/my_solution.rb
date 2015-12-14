@@ -1,8 +1,8 @@
 # Pad an Array
 
-# I worked on this challenge [by myself, with: ]
+# I worked on this challenge [with: Thomas Huang]
 
-# I spent [] hours on this challenge.
+# I spent [2] hours on this challenge.
 
 
 # Complete each step below according to the challenge directions and
@@ -42,26 +42,26 @@
 
 
 # 1. Initial Solution
-# def pad!(array, min_size, value = nil) #destructive
-#   if array.length >= min_size
-#     return array
-#   end
-#   num_spaces = min_size - array.length
-#   num_spaces.times { array << value }
-#   return array
-# end
+def pad_destructive__Use_refactored_version_below(array, min_size, value = nil) #destructive
+  if array.length >= min_size
+    return array
+  end
+  num_spaces = min_size - array.length
+  num_spaces.times { array << value }
+  return array
+end
 
-# def pad(array, min_size, value = nil) #non-destructive
+def pad_nondestructive__Use_refactored_version_below(array, min_size, value = nil) #non-destructive
 
-#   new_array = array.dup
+  new_array = array.dup
 
-#   if array.length >= min_size
-#     return new_array
-#   end
-#   num_spaces = min_size - array.length
-#   num_spaces.times {new_array << value}
-#     return new_array
-# end
+  if array.length >= min_size
+    return new_array
+  end
+  num_spaces = min_size - array.length
+  num_spaces.times {new_array << value}
+    return new_array
+end
 
 
 # 3. Refactored Solution
