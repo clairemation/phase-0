@@ -2,7 +2,7 @@
 # 1)Claire Samuels
 # 2)N/A
 
-# We spent [#] hours on this challenge.
+# We spent [2.5] hours on this challenge.
 
 #To do:
 
