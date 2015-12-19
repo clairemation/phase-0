@@ -45,15 +45,15 @@ puts serving_size_calc("cookie", 1)
 puts serving_size_calc("cookie", 10)
 puts serving_size_calc("THIS IS AN ERROR", 5)
 
- Reflection
--What did you learn about making code readable by working on this challenge?
-It's fun to shorten code as much as possible, e.g. remove "middleman" variables, but that makes it practically unintelligible. Here I fought the desire to do that, so I could see what each expression stood for. I also tried to comment more than I've been doing.
+#  Reflection
+# -What did you learn about making code readable by working on this challenge?
+# It's fun to shorten code as much as possible, e.g. remove "middleman" variables, but that makes it practically unintelligible. Here I fought the desire to do that, so I could see what each expression stood for. I also tried to comment more than I've been doing.
 
--Did you learn any new methods? What did you learn about them?
-I scoured the docs for Hash, String, and Enumerable methods, but I didn't find any that lessened the number of steps or created fewer intermediate objects. I did sort of learn the infix operator for strings (<<). I hadn't been entirely sure whether strings had that. Also, in a prior version of the code, I had a statement where I called a method on the string to the left of the infix operator. Like: my_string.chomp!("blah") << "more text". I wasn't sure it would work the way I wanted it to, but happily it did.
+# -Did you learn any new methods? What did you learn about them?
+# I scoured the docs for Hash, String, and Enumerable methods, but I didn't find any that lessened the number of steps or created fewer intermediate objects. I did sort of learn the infix operator for strings (<<). I hadn't been entirely sure whether strings had that. Also, in a prior version of the code, I had a statement where I called a method on the string to the left of the infix operator. Like: my_string.chomp!("blah") << "more text". I wasn't sure it would work the way I wanted it to, but happily it did.
 
--What did you learn about accessing data in hashes?
-I feel like this project built on what I already knew about hashes. But it was a good exercise in discerning between hashes and arrays, and how to get data into a form your methods can operate on.
+# -What did you learn about accessing data in hashes?
+# I feel like this project built on what I already knew about hashes. But it was a good exercise in discerning between hashes and arrays, and how to get data into a form your methods can operate on.
 
--What concepts were solidified when working through this challenge?
-I was glad for the chance to use #select "in the field," so to speak. I also glad to try out the infix operator for strings, because I wasn't entire sure at first that it would work.
+# -What concepts were solidified when working through this challenge?
+# I was glad for the chance to use #select "in the field," so to speak. I also glad to try out the infix operator for strings, because I wasn't entire sure at first that it would work.
