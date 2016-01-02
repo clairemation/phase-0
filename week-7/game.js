@@ -2,7 +2,7 @@
 
 // This is a solo challenge
 
-// Your mission description: Collect 3 fallen gears and bring them back to base camp in an area full of shifting tar pits. If you step into a tar pit and you're holding a gear, the gear will be swept away to another position on the map. If you step into one and you're holding more than one gear, you're too heavy to escape and will sink to your doom.
+// Your mission description: Collect 3 fallen gears and bring them back to base camp in an area full of shifting lava. If you step into a tar pit and you're holding a gear, the gear will be swept away to another position on the map. If you step into one and you're holding more than one gear, you're too heavy to escape and will sink to your doom.
 
 // Overall mission: On the first test flight of your new time machine, you arrive in a prehistoric era only to find that many pieces have dropped off in flight and the machine is now inoperable. You must now recover the lost pieces, era by era, to make your way home.
 
@@ -10,7 +10,7 @@
 
 // Characters: Dr. Ampersand the scientist (you)
 
-// Objects: 1 map, 3 gears, 1 base camp, 1 tar pit controller object
+// Objects: 1 map, 3 gears, 1 base camp, 1 lava controller object
 
 // Functions:
 
@@ -25,10 +25,10 @@
 // -add item to inventory
 // -lose item from inventory
 
-// tar pit controller:
-// -expand (turn random empty tile neighboring a tarpit tile into a tarpit tile)
-// -contract (turn a random tarpit tile into an empty tile)
-// -if Ampersand is on a tarpit tile, remove 1 item from her inventory, deposit it on random empty tile
+// lava controller:
+// -expand (turn random empty tile neighboring a lava tile into a lava tile)
+// -contract (turn a random lava tile into an empty tile)
+// -if Ampersand is on a lava tile, remove 1 item from her inventory, deposit it on random empty tile
 
 // base camp:
 // add item to inventory and check if goal reached
@@ -38,25 +38,55 @@
 //
 // general program flow:
 
-// until goal reached or game over: {
-// display map
-// prompt user movement (up down left right)
-// IF gear there, add to inventory & update position
-// ELSE IF base camp there, remove gears from inventory, add gears to base camp inventory, don't update position
-// ELSE just update position
-// tarpitController checks, execution -- break if game over
-// update map
+// REPEAT {
+//   status = turn()
+//   IF status = gameOver, call gameOverHandler
+//   IF status = win, call winHandler
 // }
-// p "You win!"
 
+// function gameOverHandler {
+//   print "Ouch! Boiled in lava! Game Over.\nYou collected x gears."
+// }
+
+// function winHandler {
+//   print "Great job! You got all three gears! On to the next era!"
+// }
+
+
+// function turn() = {
 //
+//  drawScreen()
+//
+//  prompt command UNTIL you get a viable direction
+//  REPEAT {
+//   shift lava
+//   move ampersand one tile in designated direction
+//   sleep 0.2s
+//   display map
+//   IF this tile == any lava tile, return gameOver (end turn, lose)
+//  } UNTIL this tile == any node tile
+//
+//  IF this tile == any fieldGear tile, add 1 to amp's inventory and remove gear from field
+
+//  IF inventory == totalGears, return win
+
+//  return continue (next turn, no win or lose)
+// }
+
+
+//  nodes = [[y,x], [y,x], [y,x]...] <--list of node points on map
+
+//  fieldGears = [[y,x], [y,x], [y,x]] <-- coords of gears on the field
+
+//  totalGears = 3
+
 // baseMap = [
 //        123456789ABCDEFGHIJKLMNOPQRST
 //    1 ["   •---•---------•-----•     "]
 //    2 ["   |   |         |     |     "]
 //    3 ["•--•---•------•--•--•--•--•  "]
-//    4 ["|  |   |      |     |     |  "]
-//    5 ["A--•   |  •---•     •--•--•  "]
+//    4 ["• |   |      |     |     |  "]
+//    5 ["A••   |  •---•     •--•--•  "]
 //    6 ["|      |  |            |     "]
 //    7 ["•------•--•------------•-----"]
 //  ]
@@ -79,62 +109,46 @@
 // # = tar
 
 //  function drawScreen: {
-//  output "Inventory: x gears \n"
-//  output EACH row of liveMap
+//  output "Inventory: x gears"
+//  output EACH row of liveMap() as a string
 //  }
 //
 
-// ampersand {
-
-//   posX = whatever
-//   posY = whatever
-
-//   gears = 0
-//   max_gears = 2
-
-//   move(direction) {
-//   erase old position, move to next node, write to new position:
-//     write baseMap(posY, posX) to liveMap(posY, posX)
-//     case direction
-//       IF L
-//          UNTIL baseMap at newPosition = node
-//            sleep .2s
-//            posX --
-//            write "&" to liveMap at new posY, posX
-//            drawScreen
-//       if R, " posX ++
-//       if U, " posY --
-//       if D, " posY ++
-//   }
+// function liveMap() {
+//   dupe baseMap -> displayMap
+//   draw EACH lava tile to displayMap
+//   draw EACH field gear to displayMap
+//   draw Ampersand to displayMap
+//   return displayMap
 // }
 
-// tarpitController {
+// ampersand {
 
-//   tarpitTiles = [[y,x], [y, x], [y, x]...]
+//   x = whatever
+//   y = whatever
+//   gears = 0
+// }
 
-//   check() {
-//    check if ampersand is in tarpit:
-//    IF ampersand's location is included in tarpitTiles
-//      IF ampersand.gears >= 2 { game over! }
-//      IF ampersand.gears == 1 {
-//        ampersand.gears = 0
-//        random newPosition on path or node ( newPosition = random, repeat until baseMap at that position contains "•" "|" or "-")
-//        write to liveMap at newPosition, "@")
-//       }
-//    }
+// lavaController {
 
-//   expand() {
-//     do 3 times:
-//       lookup random spot on map until (spot is blank or "&") && (position to L, R, U, or D of spot is tarpit tile)
-//       add spot to tarpitTiles
-//       write "#" to spot on map
+//   tiles = [[y,x], [y, x], [y, x]...]
+//   borderTiles = ditto
+
+//  function shift() {
+//   3x expand() {
+//      REPEAT {pop random tile from borderTiles array} UNTIL it's not a gear tile
+//      push it to lava tiles array
+//      for EACH neighboring tile to left, right, up, down
+//        IF it's not a lava tile, add to borderTiles array
 //   }
 
-//   contract() {
-//     do 2 times:
-//       select random element of tarpitTiles
-//       write " " to map position
-//       delete element
+//   2x contract() {
+//      pop random tile from tiles array
+//      push it to borderTiles array
+//      for EACH of its neighbors to left, right, up, down {
+//        IF it is in borderTiles && NONE of it its neighbors are lava
+//          {delete it from borderTiles}
+//        }
 //   }
 
 // }
@@ -148,9 +162,9 @@ var baseMap = [
    "   •---•---------•-----•     ".split(""),
    "   |   |         |     |     ".split(""),
    "•--•---•------•--•--•--•--•  ".split(""),
-   "|  |   |      |     |     |  ".split(""),
-   "A--•   |  •---•     •--•--•  ".split(""),
-   "|      |  |            |     ".split(""),
+   "•  |   |      |     |     |  ".split(""),
+   "A•-•   |  •---•     •--•--•  ".split(""),
+   "•      |  |            |     ".split(""),
    "•------•--•------------•----•".split("")
    ]
 
@@ -168,20 +182,21 @@ var baseMap = [
 
 var gameOver = false;
 var win = false;
-
-var status = "";
+var message = "";
+var gear1 = { y:0, x:7};
+var gear2 = { y:2, x:4};
+var gear3 = { y:0, x:23};
 
 function drawScreen() {
-  console.log("\n" + status + "\nCollected: 0 gears\nInventory: " + amp.gears + " gears\n")
+  console.log("\n" + message + "\nCollected: 0 gears\nInventory: " + ampersand.gears + " gears\n")
   for (var i = 0; i < liveMap.length; i ++)
     console.log(liveMap[i].join(""));
   console.log("\n");
 }
 
 
-var amp = {
+var ampersand = {
   gears: 0,
-  maxGears: 2,
   y: 2,
   x: 3,
 
@@ -190,13 +205,13 @@ var amp = {
     switch (direction) {
 
       case 'left':
-        liveMap[this.y][this.x] = baseMap[this.y][this.x]; //erase old spot
-        var newX = this.x; //set working X position
+        // liveMap[this.y][this.x] = baseMap[this.y][this.x]; //erase old spot
+        // var newX = this.x; //set new working X position
         do {
           newX --
-        } while ((baseMap[this.y][newX] != '•') && (baseMap[this.y][newX] != '@') && (baseMap[this.y][newX] != '#')); //move left until node
+        } while ((baseMap[this.y][newX] != '•') && (baseMap[this.y][newX] != '@') && (baseMap[this.y][newX] != '#')); //move working position left until node
         this.x = newX; //set official X to working X
-        liveMap[this.y][this.x] = '&'; //draw new position
+        // liveMap[this.y][this.x] = '&'; //draw new position
         break;
 
       case 'right':
@@ -229,13 +244,14 @@ var amp = {
         liveMap[this.y][this.x] = '&';
         break;
 
-    } //switch
+    } //switch (direction)
+
   } //move function
 
-} //amp
+} //ampersand object
 
 
-var tarpitController = {
+var tarpit = {
 
   tarTiles: [
     [1,9],
@@ -261,43 +277,27 @@ var tarpitController = {
     [5,7]
   ],
 
-  checkChar: function(character){
-    charPosition = [character.x, character.y];
-    charInTarpit = false;
-    for (var i = 0; i < tarTiles.length; i++) {
-      if (charPosition = tarTiles[i]) {
-        charInTarpit = true;
-        break;
-      }//if
-    }//for
+  contains: function(character){
+    var charPosition = [character.y, character.x];
+    for (var i = 0; i < this.tarTiles.length; i++) {
+      if (charPosition == this.tarTiles[i]) {
+        return true;
+      }
+    }
+    return false;
+  },//contains function
 
-    if (charInTarpit) {
+  washAway: function(gear){
+    ampersand.gears --;
+    liveMap[gear.y][gear.x] = '@';
+  },//washAway function
 
-      if (character.gears >= 2) {
-        gameOver = true;
-        return;
-      }//if gears >=2
+  expand: function() {
+    //to do
+  },//expand function
 
-      if (character.gears == 1) {
-        character.gears = 0; //lose gear
 
-        //pick a random spot on a path
-        var r = new Random();
-        do {
-          var yRand = r.nextInt(6 - 0 + 1) + 0; //random y
-          var xRand = r.nextInt(28 - 0 + 1) + 0; //random x
-        } while ((liveMap[yRand][xRand] != '-') && (liveMap[yRand][xRand] != '•') && (liveMap[yRand][xRand] != '|') && (liveMap[yRand][xRand] != '#')); //repeat until random coords are on a path tile
-
-        liveMap[yRand][xRand] = '@'; //put the gear there
-        status = "Lost a gear!";
-
-      }//if gears == 1
-
-    }//if charInTarpit
-
-  },//checkChar
-
-} //tarpitController
+}//tarpit object
 
 
 // MAIN PROGRAM---------------------------------------
@@ -306,7 +306,8 @@ do {
 
 drawScreen();
 
-console.log("Enter a move");
+
+// prompt("Enter a move");
 
 
 
