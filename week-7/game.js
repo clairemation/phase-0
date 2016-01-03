@@ -1,16 +1,27 @@
- // Design Basic Game Solo Challenge
+ // Design Basic Game Solo Challenge-- TIMECYCLE
 
 // This is a solo challenge
 
-// Your mission description: Collect 3 fallen gears and bring them back to base camp in an area full of shifting tar pits. If you step into a tar pit and you're holding a gear, the gear will be swept away to another position on the map. If you step into one and you're holding more than one gear, you're too heavy to escape and will sink to your doom.
+// Your mission description: Collect three crystals on a shifting lava field--but don't let the lava touch you!
 
-// Overall mission: On the first test flight of your new time machine, you arrive in a prehistoric era only to find that many pieces have dropped off in flight and the machine is now inoperable. You must now recover the lost pieces, era by era, to make your way home.
+// Overall mission:
 
-// Goals: Add 3 gears to base camp inventory
+// It will only lead to catastrophe, Brackett says. Sweet boy, that young postdoc, and nice butt, but not too bright. You know what you're doing--you're Dr. Ampersand, preeminent (and only) chronolocomotive systems engineer. And your timecycle, complete at last, is a work of beauty and genius. You rev it up--eons blow past you. The building of the pyramids. Early man. The dinosaurs. Explosion.
+
+// Wait, explosio--
+
+// You regain consciousness under your timecycle, on a lava field, the timecycle's fuel chamber blown wide open. You're in the early Precambrian Eon. And the trilithium crystals that fuelled your timecycle are scattered across the ages.
+
+// Well, this might be a catastrophe for an ORDINARY scientist, but for Dr. Ampersand, preeminent chronolocomotive systems engineer, it's just a bad day. Three trilithium crystals landed with you in the Precambrian. If you can recover them, that's all the fuel you need to go find the next bunch in the Triassic Period, which will get you to the next bunch in the Cretacious, and so on. You're going to make it home. You can't wait to see Brackett's adorably wrong face. Maybe over drinks.
+
+// Just... what DID cause your tike's accident? And why is history getting increasingly... different?
+
+
+// Goals: Get gear count to 3
 
 // Characters: Dr. Ampersand the scientist (you)
 
-// Objects: 1 map, 3 gears, 1 base camp, 1 tar pit controller object
+// Objects: 1 map, 3 gears, 1 base camp, 1 lava controller object
 
 // Functions:
 
@@ -25,10 +36,10 @@
 // -add item to inventory
 // -lose item from inventory
 
-// tar pit controller:
-// -expand (turn random empty tile neighboring a tarpit tile into a tarpit tile)
-// -contract (turn a random tarpit tile into an empty tile)
-// -if Ampersand is on a tarpit tile, remove 1 item from her inventory, deposit it on random empty tile
+// lava controller:
+// -expand (turn random empty tile neighboring a lava tile into a lava tile)
+// -contract (turn a random lava tile into an empty tile)
+// -if Ampersand is on a lava tile, remove 1 item from her inventory, deposit it on random empty tile
 
 // base camp:
 // add item to inventory and check if goal reached
@@ -38,25 +49,55 @@
 //
 // general program flow:
 
-// until goal reached or game over: {
-// display map
-// prompt user movement (up down left right)
-// IF gear there, add to inventory & update position
-// ELSE IF base camp there, remove gears from inventory, add gears to base camp inventory, don't update position
-// ELSE just update position
-// tarpitController checks, execution -- break if game over
-// update map
+// REPEAT {
+//   status = turn()
+//   IF status = gameOver, call gameOverHandler
+//   IF status = win, call winHandler
 // }
-// p "You win!"
 
+// function gameOverHandler {
+//   print "Ouch! Boiled in lava! Game Over.\nYou collected x gears."
+// }
+
+// function winHandler {
+//   print "Great job! You got all three gears! On to the next era!"
+// }
+
+
+// function turn() = {
 //
+//  drawScreen()
+//
+//  prompt command UNTIL you get a viable direction
+//  REPEAT {
+//   shift lava
+//   move ampersand one tile in designated direction
+//   sleep 0.2s
+//   display map
+//   IF this tile == any lava tile, return gameOver (end turn, lose)
+//  } UNTIL this tile == any node tile
+//
+//  IF this tile == any fieldGear tile, add 1 to amp's inventory and remove gear from field
+
+//  IF inventory == totalGears, return win
+
+//  return continue (next turn, no win or lose)
+// }
+
+
+//  nodes = [[y,x], [y,x], [y,x]...] <--list of node points on map
+
+//  fieldGears = [[y,x], [y,x], [y,x]] <-- coords of gears on the field
+
+//  totalGears = 3
+
 // baseMap = [
 //        123456789ABCDEFGHIJKLMNOPQRST
 //    1 ["   •---•---------•-----•     "]
 //    2 ["   |   |         |     |     "]
 //    3 ["•--•---•------•--•--•--•--•  "]
-//    4 ["|  |   |      |     |     |  "]
-//    5 ["A--•   |  •---•     •--•--•  "]
+//    4 ["• |   |      |     |     |  "]
+//    5 ["A••   |  •---•     •--•--•  "]
 //    6 ["|      |  |            |     "]
 //    7 ["•------•--•------------•-----"]
 //  ]
@@ -79,240 +120,386 @@
 // # = tar
 
 //  function drawScreen: {
-//  output "Inventory: x gears \n"
-//  output EACH row of liveMap
+//  output "Inventory: x gears"
+//  output EACH row of liveMap() as a string
 //  }
 //
 
+// function liveMap() {
+//   dupe baseMap -> displayMap
+//   draw EACH lava tile to displayMap
+//   draw EACH field gear to displayMap
+//   draw Ampersand to displayMap
+//   return displayMap
+// }
+
 // ampersand {
 
-//   posX = whatever
-//   posY = whatever
-
+//   x = whatever
+//   y = whatever
 //   gears = 0
-//   max_gears = 2
-
-//   move(direction) {
-//   erase old position, move to next node, write to new position:
-//     write baseMap(posY, posX) to liveMap(posY, posX)
-//     case direction
-//       IF L
-//          UNTIL baseMap at newPosition = node
-//            sleep .2s
-//            posX --
-//            write "&" to liveMap at new posY, posX
-//            drawScreen
-//       if R, " posX ++
-//       if U, " posY --
-//       if D, " posY ++
-//   }
 // }
 
-// tarpitController {
+// lavaController {
 
-//   tarpitTiles = [[y,x], [y, x], [y, x]...]
+//   tiles = [[y,x], [y, x], [y, x]...]
+//   borderTiles = ditto
 
-//   check() {
-//    check if ampersand is in tarpit:
-//    IF ampersand's location is included in tarpitTiles
-//      IF ampersand.gears >= 2 { game over! }
-//      IF ampersand.gears == 1 {
-//        ampersand.gears = 0
-//        random newPosition on path or node ( newPosition = random, repeat until baseMap at that position contains "•" "|" or "-")
-//        write to liveMap at newPosition, "@")
-//       }
-//    }
-
-//   expand() {
-//     do 3 times:
-//       lookup random spot on map until (spot is blank or "&") && (position to L, R, U, or D of spot is tarpit tile)
-//       add spot to tarpitTiles
-//       write "#" to spot on map
+//  function shift() {
+//   3x expand() {
+//      REPEAT {pop random tile from borderTiles array} UNTIL it's not a gear tile
+//      push it to lava tiles array
+//      for EACH neighboring tile to left, right, up, down
+//        IF it's not a lava tile, add to borderTiles array
 //   }
 
-//   contract() {
-//     do 2 times:
-//       select random element of tarpitTiles
-//       write " " to map position
-//       delete element
+//   2x contract() {
+//      pop random tile from tiles array
+//      push it to borderTiles array
+//      for EACH of its neighbors to left, right, up, down {
+//        IF it is in borderTiles && NONE of it its neighbors are lava
+//          {delete it from borderTiles}
+//        }
 //   }
 
 // }
 
+
+
+  // [
+ //                  1         2
+ //        01234567890123456789012345678
+ //*0*/   "   •---@---------•-----@     ".split(""),
+ // /*1*/ "   |   | ####    |     | ### ".split(""),
+ // /*2*/ "•--•---•--#---@--•--•--•-##  ".split(""),
+ // /*3*/ "|  |   |      | ##  |     |  ".split(""),
+ // /*4*/ "•--•   |  •---•  #  •--•--•  ".split(""),
+ // /*5*/ "|      |  |   ####     |     ".split(""),
+ // /*6*/ "&------•--•------------•----•".split("")
+ // ]
 
 //
 
-// Initial Code------------------------------------------
+// INITIAL CODE==============================================
 
-var baseMap = [
+// environment variables------------------------------------------
+var totalCrystals = 3;
+var status = 'ok';
+
+// map--------------------------------------------------
+
+var map = {
+
+  baseMap: [
    "   •---•---------•-----•     ".split(""),
    "   |   |         |     |     ".split(""),
    "•--•---•------•--•--•--•--•  ".split(""),
    "|  |   |      |     |     |  ".split(""),
-   "A--•   |  •---•     •--•--•  ".split(""),
+   "•--•   |  •---•     •--•--•  ".split(""),
    "|      |  |            |     ".split(""),
    "•------•--•------------•----•".split("")
-   ]
+   ],
 
- var liveMap = [
- //           1         2
- //     01234567890123456789012345678
- /*0*/ "   •---@---------•-----@     ".split(""),
- /*1*/ "   |   | ####    |     | ### ".split(""),
- /*2*/ "•--&---•--#---@--•--•--•-##  ".split(""),
- /*3*/ "|  |   |      | ##  |     |  ".split(""),
- /*4*/ "A--•   |  •---•  #  •--•--•  ".split(""),
- /*5*/ "|      |  |   ####     |     ".split(""),
- /*6*/ "•------•--•------------•----•".split("")
- ]
+   displayMap: [
+   "   •---•---------•-----•     ".split(""),
+   "   |   |         |     |     ".split(""),
+   "•--•---•------•--•--•--•--•  ".split(""),
+   "|  |   |      |     |     |  ".split(""),
+   "•--•   |  •---•     •--•--•  ".split(""),
+   "|      |  |            |     ".split(""),
+   "•------•--•------------•----•".split("")
+   ],
 
-var gameOver = false;
-var win = false;
-
-var status = "";
-
-function drawScreen() {
-  console.log("\n" + status + "\nCollected: 0 gears\nInventory: " + amp.gears + " gears\n")
-  for (var i = 0; i < liveMap.length; i ++)
-    console.log(liveMap[i].join(""));
-  console.log("\n");
 }
 
 
-var amp = {
-  gears: 0,
-  maxGears: 2,
-  y: 2,
-  x: 3,
+// world objects----------------------------------------------
 
-  move: function(direction) {
+var ampersand = {
+  image: '&',
+  coords: {y: 6, x: 0}
+}
+
+var lava = {
+  image: '#',
+  coords: [
+    {y: 1, x: 9},
+    {y: 1, x: 10},
+    {y: 1, x: 11},
+    {y: 1, x: 12},
+    {y: 1, x: 25},
+    {y: 1, x: 26},
+    {y: 1, x: 27},
+    {y: 4, x: 16},
+    {y: 4, x: 17},
+    {y: 5, x: 17},
+    {y: 6, x: 14},
+    {y: 6, x: 15},
+    {y: 6, x: 16},
+    {y: 6, x: 17}
+  ],
+  shift: function() {
+    //TODO -- expand and contract lava fields
+  }
+}
+
+var crystals = {
+  image: '◊',
+  coords: [
+    {y: 2, x: 17},
+    {y: 0, x: 23},
+    {y: 2, x: 4}
+        ]
+}
+
+// functions---------------------------------------------------------------------
+
+var updateDisplayMap = function() {
+
+  //draw ampersand to display map
+  map.displayMap[ampersand.coords.y][ampersand.coords.x] = ampersand.image;
+
+  //draw lava tiles
+  for (var i in lava.coords){
+    y = lava.coords[i].y;
+    x = lava.coords[i].x;
+    map.displayMap[y][x] = lava.image;
+  }
+
+  //draw crystals
+  for (var i in crystals.coords){
+    y = crystals.coords[i].y;
+    x = crystals.coords[i].x;
+    map.displayMap[y][x] = crystals.image;
+  }
+}
+
+//------------------------------------------
+
+var drawScreen = function() {
+  console.log("Collect " + totalCrystals + " crystals\n");
+  for (var line in map.displayMap) {
+    console.log(map.displayMap[line].join(""));
+  }
+}
+
+//------------------------------------------
+
+var gameOverHandler = function() {
+  //TODO
+}
+
+//------------------------------------------
+
+var winHandler = function() {
+  //TODO
+}
+
+//------------------------------------------
+
+var main = function(){
+  while (true) {
+    status = turn();
+    if (status == 'lose') {gameOverHandler()}
+    if (status == 'win') {winHandler()}
+  }
+}
+
+//---------------------------------------------
+
+var turn = function(){
+
+  //prompt input until we get a viable direction
+  var repeat = false;
+  do {
+    //prompt command -- placeholder value now
+    direction = up;
+  } while (repeat);
+
+  //travel towards node
+  do {
+
+    lava.shift();
 
     switch (direction) {
+      case 'up': ampersand.coords.y --;
+      case 'down': ampersand.coords.y ++;
+      case 'left': ampersand.coords.x --;
+      case 'right': ampersand.coords.y ++;
+    }
 
-      case 'left':
-        liveMap[this.y][this.x] = baseMap[this.y][this.x]; //erase old spot
-        var newX = this.x; //set working X position
-        do {
-          newX --
-        } while ((baseMap[this.y][newX] != '•') && (baseMap[this.y][newX] != '@') && (baseMap[this.y][newX] != '#')); //move left until node
-        this.x = newX; //set official X to working X
-        liveMap[this.y][this.x] = '&'; //draw new position
-        break;
+    //sleep
 
-      case 'right':
-        liveMap[this.y][this.x] = baseMap[this.y][this.x];
-        var newX = this.x;
-        do {
-          newX ++;
-        } while ((baseMap[this.y][newX] != '•') && (baseMap[this.y][newX] != '@') && (baseMap[this.y][newX] != '#'));
-        this.x = newX;
-        liveMap[this.y][this.x] = '&';
-        break;
+    //display map
+    updateDisplayMap();
+    drawScreen();
 
-      case 'up':
-        liveMap[this.y][this.x] = baseMap[this.y][this.x];
-        var newY = this.y;
-        do {
-          newY --;
-        } while ((baseMap[newY][this.x] != '•') && (baseMap[newY][this.x] != '@') && (baseMap[newY][this.x] != '#'));
-        this.y = newY;
-        liveMap[this.y][this.x] = '&';
-        break;
+    //if you step in lava, return status = lose
 
-      case 'down':
-        liveMap[this.y][this.x] = baseMap[this.y][this.x];
-        var newY = this.y;
-        do {
-          newY ++;
-        } while ((baseMap[newY][this.x] != '•') && (baseMap[newY][this.x] != '@') && (baseMap[newY][this.x] != '#'));
-        this.y = newY;
-        liveMap[this.y][this.x] = '&';
-        break;
+  } while (map.baseMap[ampersand.y][ampersand.x] != '•'); // end travel
 
-    } //switch
-  } //move function
+  //check tile for crystal
 
-} //amp
+  //if remaining crystals = 0, return a win
+
+  //else continue to the next turn
+  return 'ok';
+
+} //function turn
 
 
-var tarpitController = {
+// function turn() = {
+//
+//  drawScreen()
+//
+//  prompt command UNTIL you get a viable direction
+//  REPEAT {
+//   shift lava
+//   move ampersand one tile in designated direction
+//   sleep 0.2s
+//   display map
+//   IF this tile == any lava tile, return gameOver (end turn, lose)
+//  } UNTIL this tile == any node tile
+//
+//  IF this tile == any fieldGear tile, add 1 to amp's inventory and remove gear from field
 
-  tarTiles: [
-    [1,9],
-    [1,10],
-    [1,11],
-    [1,12],
+//  IF inventory == totalGears, return win
 
-    [1,25],
-    [1,26],
-    [1,27],
-
-    [2,0],
-
-    [2,5],
-    [2,6],
-
-    [3,6],
-    [3,7],
-    [4,7],
-    [5,4],
-    [5,5],
-    [5,6],
-    [5,7]
-  ],
-
-  checkChar: function(character){
-    charPosition = [character.x, character.y];
-    charInTarpit = false;
-    for (var i = 0; i < tarTiles.length; i++) {
-      if (charPosition = tarTiles[i]) {
-        charInTarpit = true;
-        break;
-      }//if
-    }//for
-
-    if (charInTarpit) {
-
-      if (character.gears >= 2) {
-        gameOver = true;
-        return;
-      }//if gears >=2
-
-      if (character.gears == 1) {
-        character.gears = 0; //lose gear
-
-        //pick a random spot on a path
-        var r = new Random();
-        do {
-          var yRand = r.nextInt(6 - 0 + 1) + 0; //random y
-          var xRand = r.nextInt(28 - 0 + 1) + 0; //random x
-        } while ((liveMap[yRand][xRand] != '-') && (liveMap[yRand][xRand] != '•') && (liveMap[yRand][xRand] != '|') && (liveMap[yRand][xRand] != '#')); //repeat until random coords are on a path tile
-
-        liveMap[yRand][xRand] = '@'; //put the gear there
-        status = "Lost a gear!";
-
-      }//if gears == 1
-
-    }//if charInTarpit
-
-  },//checkChar
-
-} //tarpitController
-
-
-// MAIN PROGRAM---------------------------------------
-
-do {
-
-drawScreen();
-
-console.log("Enter a move");
+//  return continue (next turn, no win or lose)
+// }
 
 
 
-gameOver = true;
 
-} while ((!gameOver) && (!win));
+
+
+// function drawScreen() {
+//   console.log(\nCollected: " + ampersand.gears + " gears\n")
+//   for (var i = 0; i < liveMap.length; i ++)
+//     console.log(liveMap[i].join(""));
+//   console.log("\n");
+// }
+
+
+// var ampersand = {
+//   gears: 0,
+//   y: 2,
+//   x: 3,
+
+//   move: function(direction) {
+
+//     switch (direction) {
+
+//       case 'left':
+//         // liveMap[this.y][this.x] = baseMap[this.y][this.x]; //erase old spot
+//         // var newX = this.x; //set new working X position
+//         do {
+//           newX --
+//         } while ((baseMap[this.y][newX] != '•') && (baseMap[this.y][newX] != '@') && (baseMap[this.y][newX] != '#')); //move working position left until node
+//         this.x = newX; //set official X to working X
+//         // liveMap[this.y][this.x] = '&'; //draw new position
+//         break;
+
+//       case 'right':
+//         liveMap[this.y][this.x] = baseMap[this.y][this.x];
+//         var newX = this.x;
+//         do {
+//           newX ++;
+//         } while ((baseMap[this.y][newX] != '•') && (baseMap[this.y][newX] != '@') && (baseMap[this.y][newX] != '#'));
+//         this.x = newX;
+//         liveMap[this.y][this.x] = '&';
+//         break;
+
+//       case 'up':
+//         liveMap[this.y][this.x] = baseMap[this.y][this.x];
+//         var newY = this.y;
+//         do {
+//           newY --;
+//         } while ((baseMap[newY][this.x] != '•') && (baseMap[newY][this.x] != '@') && (baseMap[newY][this.x] != '#'));
+//         this.y = newY;
+//         liveMap[this.y][this.x] = '&';
+//         break;
+
+//       case 'down':
+//         liveMap[this.y][this.x] = baseMap[this.y][this.x];
+//         var newY = this.y;
+//         do {
+//           newY ++;
+//         } while ((baseMap[newY][this.x] != '•') && (baseMap[newY][this.x] != '@') && (baseMap[newY][this.x] != '#'));
+//         this.y = newY;
+//         liveMap[this.y][this.x] = '&';
+//         break;
+
+//     } //switch (direction)
+
+//   } //move function
+
+// } //ampersand object
+
+
+// var tarpit = {
+
+//   tarTiles: [
+//     [1,9],
+//     [1,10],
+//     [1,11],
+//     [1,12],
+
+//     [1,25],
+//     [1,26],
+//     [1,27],
+
+//     [2,0],
+
+//     [2,5],
+//     [2,6],
+
+//     [3,6],
+//     [3,7],
+//     [4,7],
+//     [5,4],
+//     [5,5],
+//     [5,6],
+//     [5,7]
+//   ],
+
+//   contains: function(character){
+//     var charPosition = [character.y, character.x];
+//     for (var i = 0; i < this.tarTiles.length; i++) {
+//       if (charPosition == this.tarTiles[i]) {
+//         return true;
+//       }
+//     }
+//     return false;
+//   },//contains function
+
+//   washAway: function(gear){
+//     ampersand.gears --;
+//     liveMap[gear.y][gear.x] = '@';
+//   },//washAway function
+
+//   expand: function() {
+//     //to do
+//   },//expand function
+
+
+// }//tarpit object
+
+
+// // MAIN PROGRAM---------------------------------------
+
+// do {
+
+// drawScreen();
+
+
+// // prompt("Enter a move");
+
+
+
+// gameOver = true;
+
+// } while ((!gameOver) && (!win));
 
 
 
