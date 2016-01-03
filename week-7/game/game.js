@@ -154,9 +154,9 @@ var createHtmlMap = function() {
   var placeObjects = function() {
 
     //first clear the field
-    var allCells = document.getElementsByTagName("td");
-    for (var cell in allCells) {
-      cell.innerHTML = "";
+    var allCells = document.getElementsByTagName("TD");
+    for (var i = 0; i < allCells.length; i++) {
+      allCells[i].innerHTML = " ";
     }
 
     //place ampersand
@@ -194,16 +194,24 @@ var press = function(direction) {
     lava.currentFrame = { 0: 1, 1: 2, 2: 0 }[lava.currentFrame]; //cycle lava frames
 
     if (direction == 'up') {
-      ampersand.y --;
+      if (document.getElementById("field").rows[ampersand.y - 1].cells[ampersand.x].className == "path") {
+        ampersand.y --;
+      }
     }
     else if (direction == 'down') {
-      ampersand.y ++;
+      if (document.getElementById("field").rows[ampersand.y + 1].cells[ampersand.x].className == "path") {
+        ampersand.y ++;
+      }
     }
     else if (direction == 'left') {
-      ampersand.x --;
+      if (document.getElementById("field").rows[ampersand.y].cells[ampersand.x - 1].className == "path") {
+        ampersand.x --;
+      }
     }
     else if (direction == 'right') {
-      ampersand.x ++;
+      if (document.getElementById("field").rows[ampersand.y].cells[ampersand.x + 1].className == "path") {
+        ampersand.x ++;
+      }
     }
 
     placeObjects();
