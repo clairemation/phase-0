@@ -2,6 +2,7 @@
 var totalCrystals = 3;
 var status = 'ok';
 var moving = false;
+var message = "";
 
 // map--------------------------------------------------
 
@@ -66,7 +67,7 @@ var createHtmlMap = function() {
   // world objects----------------------------------------------
 
   var ampersand = {
-    image: '&',
+    image: '&#9880;',
     y: 13,
     x: 2
   }
@@ -140,7 +141,7 @@ var createHtmlMap = function() {
   } //end lava
 
   var crystals = {
-    image: 'O',
+    image: '&#11042;',
     coords: [
       {y: 1, x: 17},
       {y: 1, x: 23},
@@ -151,32 +152,52 @@ var createHtmlMap = function() {
 
   // functions---------------------------------------------------------------------
 
-  var placeObjects = function() {
+var instructions = function() {
+  clearInterval(tick);
+  clearField();
+  document.getElementById("shade").style.display = "block";
+  document.getElementById("instructions").style.display = "block";
+}
 
-    //first clear the field
-    var allCells = document.getElementsByTagName("TD");
+var closeInstructions = function() {
+  document.getElementById("shade").style.display = "none";
+  document.getElementById("instructions").style.display = "none";
+  tick = setInterval(function() {advanceFrame();}, 200);
+}
+
+var clearField = function() {
+  var allCells = document.getElementsByTagName("TD");
     for (var i = 0; i < allCells.length; i++) {
       allCells[i].innerHTML = " ";
     }
+}
 
-    //place ampersand
-    document.getElementById("field").rows[ampersand.y].cells[ampersand.x].innerHTML = ("<div id='hero'>" + ampersand.image + "</div>");
 
-    //place lava
-    lava.drawLava();
+var placeObjects = function() {
 
-    //place crystals
-    for (var i in crystals.coords){
-      y = crystals.coords[i].y;
-      x = crystals.coords[i].x;
-      document.getElementById("field").rows[y].cells[x].innerHTML = "<div class = 'crystal'>" + crystals.image + "</div>";
-    }
+  //place ampersand
+  document.getElementById("field").rows[ampersand.y].cells[ampersand.x].innerHTML = ("<div id='hero'>" + ampersand.image + "</div>");
+
+  //place lava
+  lava.drawLava();
+
+  //place crystals
+  for (var i in crystals.coords){
+    y = crystals.coords[i].y;
+    x = crystals.coords[i].x;
+    document.getElementById("field").rows[y].cells[x].innerHTML = "<div class = 'crystal'>" + crystals.image + "</div>";
   }
+}
 
   //------------------------------------------
 
   var gameOverHandler = function() {
-    //TODO
+    clearInterval(tick);
+    document.getElementById("shade").style.display = "block";
+    document.getElementById("gameOverWindow").style.display = "block";
+
+    // })
+
   }
 
   //------------------------------------------
@@ -190,8 +211,6 @@ var createHtmlMap = function() {
 //button handlers
 
 var press = function(direction) {
-
-    lava.currentFrame = { 0: 1, 1: 2, 2: 0 }[lava.currentFrame]; //cycle lava frames
 
     if (direction == 'up') {
       if (document.getElementById("field").rows[ampersand.y - 1].cells[ampersand.x].className == "path") {
@@ -214,11 +233,23 @@ var press = function(direction) {
       }
     }
 
-    placeObjects();
+    // placeObjects();
 
 } //function main
 
 
 var unpress = function() {
   direction = null;
+}
+
+//flow the lava and constantly refresh screen
+var tick = setInterval(function() {advanceFrame();}, 200);
+
+var advanceFrame = function() {
+  lava.currentFrame = { 0: 1, 1: 2, 2: 0 }[lava.currentFrame];
+  if (lava.frames[lava.currentFrame][ampersand.y][ampersand.x] == "#") {
+    gameOverHandler();
+  }
+  clearField();
+  placeObjects();
 }
