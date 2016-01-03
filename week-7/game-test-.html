@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <script>
+  // INITIAL CODE==============================================
+
+  // environment variables------------------------------------------
+  var totalCrystals = 3;
+  var status = 'ok';
+
+  // map--------------------------------------------------
+
+  var map = {
+
+    baseMap: [
+     "                              ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     ],
+
+     displayMap: [
+     "                              ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  •     •     •     •     •   ".split(""),
+     "  • • • • • • • • • • • • •   ".split(""),
+     ],
+
+  }
+
+
+  // world objects----------------------------------------------
+
+  var ampersand = {
+    image: '&',
+    coords: {y: 6, x: 0}
+  }
+
+  var lava = {
+    image: '#',
+    coords: [
+      {y: 1, x: 9},
+      {y: 1, x: 10},
+      {y: 1, x: 11},
+      {y: 1, x: 12},
+      {y: 1, x: 25},
+      {y: 1, x: 26},
+      {y: 1, x: 27},
+      {y: 4, x: 16},
+      {y: 4, x: 17},
+      {y: 5, x: 17},
+      {y: 6, x: 14},
+      {y: 6, x: 15},
+      {y: 6, x: 16},
+      {y: 6, x: 17}
+    ],
+    shift: function() {
+      //TODO -- expand and contract lava fields
+    }
+  }
+
+  var crystals = {
+    image: '◊',
+    coords: [
+      {y: 2, x: 17},
+      {y: 0, x: 23},
+      {y: 2, x: 4}
+          ]
+  }
+
+  // functions---------------------------------------------------------------------
+
+  var updateDisplayMap = function() {
+
+    //draw ampersand to display map
+    map.displayMap[ampersand.coords.y][ampersand.coords.x] = ampersand.image;
+
+    //draw lava tiles
+    for (var i in lava.coords){
+      y = lava.coords[i].y;
+      x = lava.coords[i].x;
+      map.displayMap[y][x] = lava.image;
+    }
+
+    //draw crystals
+    for (var i in crystals.coords){
+      y = crystals.coords[i].y;
+      x = crystals.coords[i].x;
+      map.displayMap[y][x] = crystals.image;
+    }
+  }
+
+  //------------------------------------------
+
+  var drawScreen = function() {
+    console.log("Collect " + totalCrystals + " crystals\n");
+    for (var line in map.displayMap) {
+      console.log(map.displayMap[line].join(""));
+    }
+  }
+
+  //------------------------------------------
+
+  var gameOverHandler = function() {
+    //TODO
+  }
+
+  //------------------------------------------
+
+  var winHandler = function() {
+    //TODO
+  }
+
+  //------------------------------------------
+
+  var main = function(){
+    while (true) {
+      status = turn();
+      if (status == 'lose') {gameOverHandler()}
+      if (status == 'win') {winHandler()}
+    }
+  }
+
+  //---------------------------------------------
+
+  var turn = function(){
+
+    //prompt input until we get a viable direction
+    var repeat = false;
+    do {
+      //prompt command -- placeholder value now
+      direction = up;
+    } while (repeat);
+
+    //travel towards node
+    do {
+
+      lava.shift();
+
+      switch (direction) {
+        case 'up': ampersand.coords.y --;
+        case 'down': ampersand.coords.y ++;
+        case 'left': ampersand.coords.x --;
+        case 'right': ampersand.coords.y ++;
+      }
+
+      //sleep
+
+      //display map
+      updateDisplayMap();
+      drawScreen();
+
+      //if you step in lava, return status = lose
+
+    } while (map.baseMap[ampersand.y][ampersand.x] != '•'); // end travel
+
+    //check tile for crystal
+
+    //if remaining crystals = 0, return a win
+
+    //else continue to the next turn
+    return 'ok';
+
+  } //function turn
+
+</script>
+
+</head>
+
+<body>
+
+<h1>Timecycle</h1>
+
+
+<h3 id='message'>hi</h3>
+<div id="field"></div>
+
+
+</body>
+
+</html>
