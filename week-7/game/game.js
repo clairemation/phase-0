@@ -189,12 +189,14 @@ var placeObjects = function() {
   //------------------------------------------
 
   var gameOverHandler = function() {
-    clearInterval(tick);
-    document.getElementById("shade").style.display = "block";
-    document.getElementById("gameOverWindow").style.display = "block";
-
-    // })
-
+    ampersand.image = "&#9729;";
+    document.getElementsByClassName("buttons")[0].style.display = "none";
+    document.getElementById("hero").style.color = "#000000";
+    var ending = setTimeout(function(){
+      clearInterval(tick);
+      document.getElementById("shade").style.display = "block";
+      document.getElementById("gameOverWindow").style.display = "block";
+    }, 1200);
   }
 
   //------------------------------------------
@@ -246,7 +248,7 @@ var press = function(direction) {
         }, 50);
         setTimeout(function(){
           clearInterval(shiny)
-        }, 1500);
+        }, 1200);
 
         if (totalCrystals <= 0) {winHandler()}
       }

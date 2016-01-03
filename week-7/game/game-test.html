@@ -65,51 +65,18 @@
   }
 
   #hero {
-    /*font-family: Impact, sans-serif;*/
+    height: 20px;
     font-weight: 800;
     font-size: 20px;
     color: aqua;
     text-shadow: 0px 0px 3px rgba(0, 60, 60, .9);
   }
 
-/*-----------special ending state frames */
-  .ending0 {
-    text-shadow: 0px 0px 1px rgba(255, 255, 255, .95);
-  }
 
-  .ending1 {
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, .90);
-  }
-
-  .ending2 {
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, .85);
-  }
-
-  .ending3 {
-    text-shadow: 0px 0px 13px rgba(255, 255, 255, .75);
-  }
-
-  .ending4 {
-    text-shadow: 0px 0px 16px rgba(255, 255, 255, .60);
-  }
-
-  .ending5 {
-    text-shadow: 0px 0px 18px rgba(255, 255, 255, .40);
-  }
-
-  .ending6 {
-    text-shadow: 0px 0px 19px rgba(255, 255, 255, .25);
-  }
-
-  .ending7 {
-    text-shadow: 0px 0px 20px rgba(255, 255, 255, .0);
-  }
-
-/*------------------*/
   .crystal {
     font-weight: 800;
     color: teal;
-    text-shadow: 0px 0px 2px rgba(0, 255, 255, .3);
+    text-shadow: 0px 0px 3px rgba(0, 255, 255, .4);
   }
 
   .buttons {
@@ -193,11 +160,12 @@
 <button onclick="instructions();">Instructions</button>
 </header>
 
-<div id="instructions" style="display: none; position: fixed; margin: auto; background: white; border: 5px solid black; width: 60%; height: 40%; padding: 2em; overflow: scroll;">
-<p>It will only lead to catastrophe, my colleagues pled. Good folks, but so short-sighted. I know what I'm doing--I'm Dr. Allie Ampersand (<span style="color: blue">&#9880;</span>), the world's leading chronolocomotive systems engineer (not that being the only one makes that any less significant). And my timecycle, complete at last, is a work of beauty and genius... and, oh... the <em>sweetest</em> of rides. Feeling the winds of time in your face... accomplishing what no human ever has before...</p>
-<p>Oh, well, I can't reminisce all day. The lava's getting pretty close, and the air quality isn't great here in the Precambrian Era. And this bike's not going to push itself. You're stranded in the Precambrian Era, your timecycle's fuel chamber is busted, and the trilithium crystals it uses for fuel are scattered across the eons.</p>
-<p>Move with the arrow buttons to collect the trilithium crystals (<span style="color: green">&#11042;</span>) in this era to escape to the next one, and start your journey home. But don't let the lava touch you!</p>
-<button onclick="closeInstructions()">Close the window</button>
+<div id="instructions" onclick="closeInstructions();" style="display: none; position: fixed; margin: auto; background: white; border: 5px solid black; width: 40em; height: 40%; padding: 3em; overflow: scroll; text-align: left;">
+<p>It'll be a catastrophe, they said. It's too unstable, they said. Well, vindication is sweet. Almost as sweet as my new ride. That's right, the timecycle. It's like nothing else. Feeling the winds of time in your face... speeding through a dimension no human has ever breached...</p>
+<p>Oh, well, I can't reminisce all day. The lava's getting pretty close, and the air quality isn't great here in the Precambrian Era. And this bike's not going to push itself.</p>
+<p>Actually, it's <em>better</em> that the fuel compartment blew up the way it did. Now the fuel crystals are scattered across the eons like breadcrumbs, so if I follow them I should just be able to keep the motor running all the way home. Looks like there are three crystals here. Just enough to get me to the next era before I get fried.</p>
+<p class="emphasis">Move &#9880; with the arrow buttons to collect the fuel crystals (<span style="color: green">&#11042;</span>) to escape the Precambrian Era, and start your journey home. But don't let the lava touch you!</p>
+<button onclick="closeInstructions();">Close the window</button>
 </div>
 
 <h3 id = "message"></h3>
