@@ -526,16 +526,33 @@ var turn = function(){
 // drawScreen();
 
 
-// Refactored Code
+// Refactored Code-------------------
+
+// See at https://github.com/clairemation/clairemation.github.io/blob/master/projects/chronoboots/chronoboots.js
+// and
+// https://github.com/clairemation/clairemation.github.io/blob/master/projects/chronoboots/chronoboots.html
+
+// or running live at:
+// https://clairemation.github.io/projects/chronoboots/chronoboots.html
 
 
-
-
-
-
-// Reflection
+// Reflection-------------------------
 //
-//
+
+What was the most difficult part of this challenge?
+Maybe not falling down the rabbit hole!
+
+What did you learn about creating objects and functions that interact with one another?
+Once I got into integrating the script into html objects, it's like a light came on. I'd been working hard trying to manage the game "clock"/cycles/ticks/whatever you want to call it, but when it was running on the page I could have the character and lava refreshing asynchronously and it was all both simpler and easier to pull off than I anticipated. I have some experience programming, but I've never been able to make something like this, let alone so relatively simply.
+
+Did you learn about any new built-in methods you could use in your refactored solution? If so, what were they and how do they work?
+Did I! Once I got into using it with html and css, everything was new. Though the whole approach reminded me of HyperCard, this old visual object-scripting language for the Mac that was around when I was a kid, and I only ever played around with a little bit. It was really interesting to read in the (fellow DBC-er's) blog linked on the assignment page that JavaScript in fact derive from HyperCard!
+
+How can you access and manipulate properties of objects?
+So far we haven't learned about any way to keep object properties private, so to access one from outside you can simply reference it using either of these notations:
+object.propery or object[property]
+and compare or assign as you would with any variable.
+The bracket notation evaluates the phrase inside the brackets first, so you can use a variable there to access varying properties depending on the program state.
 //
 //
 //
