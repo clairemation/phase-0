@@ -2,29 +2,51 @@
 
 // This is a solo challenge
 
-// NOTE!! PLEASE SEE THE FINAL VERSION AT: __________ IT IS VERY DIFFERENT!
-// This whole file is a mess. It's basically several pretty different versions with different conceptions all smashed together (even in the pseudocode).
-// What turned out being the final code is in a different file, intertwined with a companion html file. You could consider this file my pseudocode and initial solution, and the other pair of files my refactored solution (even though there is plenty of refactoring left to do on that).
+// ------------------------------------------------------
 
+// *@*@*@*@*@* NOTE!! PLEASE SEE THE FINAL VERSION AT: *@*@*@*@*@*@*@*
 
-// Your mission description: Collect three crystals on a shifting lava field, but don't let the lava touch you!
+// https://github.com/clairemation/clairemation.github.io/blob/master/projects/chronoboots/chronoboots.js
+// and
+// https://github.com/clairemation/clairemation.github.io/blob/master/projects/chronoboots/chronoboots.html
 
-// Overall mission: You were testing out your new time-traveling boots when the fuel cells exploded, scattering trilithium crystals across the eons and stranding you in the early Precambrian Era. You must wander time gathering the crystals to power your boots as you go, and hope the trail will lead you home.
+// or running live at:
+// https://clairemation.github.io/projects/chronoboots/chronoboots.html
 
-// Goals: Acquire (touch) all three crystals on the map
+//  IT IS VERY DIFFERENT (and actually works)!
+
+//  The game and my approach changed considerably as I was coding and learning, so at some point I started clean in another file. What is left in this file is an unholy mashup of a bunch of different versions in one file (even the pseudocode is at odds with itself). You could view this as the pseudocode and (nonfunctioning) initial solution, and the other files as the refactored version. (Though they could still stand to have a lot more refactoring done--redundancy reduced, etc.)
+
+// Thanks.
+
+//-----------------------------------------------------
+
+// (This part is updated to reflect the final version.)
+
+// Your mission description: Collect three crystals on a prehistoric lava field, but don't let the lava touch you!
+
+// Overall mission: Help a stranded time traveler collect fuel crystals from era to era so they can return home.
+
+// Goals: Acquire (walk onto) all three crystals on the map
 
 // Characters: Hero
 
-// Objects: Hero (originally Dr. Ampersand, and still 'ampersand' in the code, because I originally used an ampersand to represent her), an array of crystal info, a map object, a lava object. (On the html page: a display table, message boxes, buttons.)
+// Objects:
+// hero (called 'ampersand' in the code, because I originally used '&' to represent her onscreen)
+// crystals list object
+// map object
+// lava field object
+// (On the html page: a display table, message boxes, buttons.)
+
+// (Below here it's all a mix of different versions--originally you were picking up gears, not crystals, and bringing them to a base. The lava was a tar pit that didn't kill you but made you drop your gears.)
 
 // Functions:
-
 // map:
 // -display
 // -write to tile
 // -read tile
 
-// Dr. Ampersand:
+// ampersand:
 // -return current position
 // -move
 // -add item to inventory
