@@ -1,27 +1,21 @@
- // Design Basic Game Solo Challenge-- TIMECYCLE
+ // Design Basic Game Solo Challenge-- CHRONO BOOTS
 
 // This is a solo challenge
 
-// Your mission description: Collect three crystals on a shifting lava field--but don't let the lava touch you!
-
-// Overall mission:
-
-// It will only lead to catastrophe, Brackett says. Sweet boy, that young postdoc, and nice butt, but not too bright. You know what you're doing--you're Dr. Ampersand, preeminent (and only) chronolocomotive systems engineer. And your timecycle, complete at last, is a work of beauty and genius. You rev it up--eons blow past you. The building of the pyramids. Early man. The dinosaurs. Explosion.
-
-// Wait, explosio--
-
-// You regain consciousness under your timecycle, on a lava field, the timecycle's fuel chamber blown wide open. You're in the early Precambrian Eon. And the trilithium crystals that fuelled your timecycle are scattered across the ages.
-
-// Well, this might be a catastrophe for an ORDINARY scientist, but for Dr. Ampersand, preeminent chronolocomotive systems engineer, it's just a bad day. Three trilithium crystals landed with you in the Precambrian. If you can recover them, that's all the fuel you need to go find the next bunch in the Triassic Period, which will get you to the next bunch in the Cretacious, and so on. You're going to make it home. You can't wait to see Brackett's adorably wrong face. Maybe over drinks.
-
-// Just... what DID cause your tike's accident? And why is history getting increasingly... different?
+// NOTE!! PLEASE SEE THE FINAL VERSION AT: __________ IT IS VERY DIFFERENT!
+// This whole file is a mess. It's basically several pretty different versions with different conceptions all smashed together (even in the pseudocode).
+// What turned out being the final code is in a different file, intertwined with a companion html file. You could consider this file my pseudocode and initial solution, and the other pair of files my refactored solution (even though there is plenty of refactoring left to do on that).
 
 
-// Goals: Get gear count to 3
+// Your mission description: Collect three crystals on a shifting lava field, but don't let the lava touch you!
 
-// Characters: Dr. Ampersand the scientist (you)
+// Overall mission: You were testing out your new time-traveling boots when the fuel cells exploded, scattering trilithium crystals across the eons and stranding you in the early Precambrian Era. You must wander time gathering the crystals to power your boots as you go, and hope the trail will lead you home.
 
-// Objects: 1 map, 3 gears, 1 base camp, 1 lava controller object
+// Goals: Acquire (touch) all three crystals on the map
+
+// Characters: Hero
+
+// Objects: Hero (originally Dr. Ampersand, and still 'ampersand' in the code, because I originally used an ampersand to represent her), an array of crystal info, a map object, a lava object. (On the html page: a display table, message boxes, buttons.)
 
 // Functions:
 
