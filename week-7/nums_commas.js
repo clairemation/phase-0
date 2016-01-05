@@ -2,7 +2,7 @@
 
 
 
-// I worked on this challenge with: .
+// I worked on this challenge with: Tyler McKenzie.
 
 
 
@@ -83,12 +83,19 @@ console.log(separate_commas(12567374974698648679));
 
 // Your Own Tests (OPTIONAL)
 
-// def separate_comma(num)
-//   num.to_s.reverse.each_char.each_slice(3).map{|n| ",#{n.join}"}.join.reverse.chomp(",")
-// end
 
-// def separate_comma(int)
-//   int.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
-// end
 
-//  return int.toString().split('').reverse().join('').replace(/(\d{3})(?=\d)/, '$1,').split('').reverse().join('');
+
+// REFLECTION
+
+// -What was it like to approach the problem from the perspective of JavaScript? Did you approach the problem differently?
+// Frustrating! I felt I had a handle on the Ruby enumerators we could use to solve this, but we didn't know how to do whatever equivalent JavaScript might have, so the solution was a lot more sort of decompressed.
+
+// -What did you learn about iterating over arrays in JavaScript?
+// The shorthand for-loop is nice, but it would've been nicer still to be able to do that over ranges (like in Ruby: for i in 0..3, etc.)
+
+// -What was different about solving this problem in JavaScript?
+// We didn't have enumerators or a shorthand for iterating through ranges.
+
+// -What built-in methods did you find to incorporate in your refactored solution?
+// Slice let us take the last 3 letters of a string.
