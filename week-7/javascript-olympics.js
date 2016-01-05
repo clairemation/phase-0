@@ -66,3 +66,11 @@ console.log(michaelPhelps.constructor === Athlete);
 console.log(michaelPhelps.name + " " + michaelPhelps.sport + " " + michaelPhelps.quote);
 
 // Reflection
+
+// -What JavaScript knowledge did you solidify in this challenge?
+// It was nice to discover that JavaScript also has split, reverse, and join, and that the syntax is similiar to how it is in Ruby.
+
+// -What are constructor functions?
+// A constructor function establishes an object type and acts as an initialize function for new objects of that type.It takes arguments, and sets the object's variables.
+
+// How are constructors different from Ruby classes (in your research)?
