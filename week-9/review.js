@@ -1,4 +1,5 @@
 // Associated files: review.html, review.css
+// Live site: https://rawgit.com/clairemation/phase-0/master/week-9/review.html
 
 // User stories
 // I want a grocery list app where I can add an an item and its quantity, delete items, edit quantities, check items off, and reorder items. Then I can generate a nicely formatted list to print out.
