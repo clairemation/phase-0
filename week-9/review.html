@@ -16,31 +16,19 @@
 
 <h1>Grocery List</h1>
 
-<input type="text" placeholder="item name" id="itemName" autofocus>
-<input type="number" value="1" id="itemNum">
-<button onclick="addItem();">&#43;</button>
-
-<table class="list">
+<table id="list">
 
   <tr>
-    <th>move up/down</th>
+    <th>Move up/down</th>
     <th>Item</th>
     <th>Quantity</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  <tr>
-    <td class="moveRow"><a onclick="moveRow(this.parentNode.parentNode, -1);">&#9650;</a><br><a onclick="moveRow(this.parentNode.parentNode, 1);">&#9660;</a></td>
-    <td class="name">Apples</td>
-    <td><input type="number" value="6" class="qty"></td>
-    <td><button onclick="check(this.parentNode.parentNode);">&#10003;</button></td>
-    <td><button onclick="deleteRow(this.parentNode.parentNode);">-</button></td>
+    <th>Purchased</th>
+    <th>New<br><button onclick="addClick();">&#43;</button></th>
   </tr>
 
 </table>
 
-<button onclick="generatePrintable();">Printable list</button>
+<button id="printableList" onclick="generatePrintable();">Printable list</button>
 
 </body>
 
